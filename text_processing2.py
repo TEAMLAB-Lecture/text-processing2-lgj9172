@@ -41,7 +41,7 @@ def digits_to_words(input_string):
         "8": "eight",
         "9": "nine",
     }
-    number_string:str = re("[^0-9]", "", input_string)
+    number_string:str = re.sub("[^0-9]", "", input_string)
     number_list:list[str] = number_string.split()
     string_list:list[str] = []
     for number in number_list:
