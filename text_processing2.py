@@ -1,3 +1,4 @@
+import re
 #######################
 # Test Processing II  #
 #######################
@@ -28,7 +29,24 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
+    db = {
+        "0": "zero",
+        "1": "one",
+        "2": "two",
+        "3": "three",
+        "4": "four",
+        "5": "five",
+        "6": "six",
+        "7": "seven",
+        "8": "eight",
+        "9": "nine",
+    }
+    number_string:str = re("[^0-9]", "", input_string)
+    number_list:list[str] = number_string.split()
+    string_list:list[str] = []
+    for number in number_list:
+        string_list.append(db[number])
+    digit_string = " ".join(string_list)
     return digit_string
 
 
@@ -64,5 +82,11 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
+    word_list = re.sub("[_*]", "_", underscore_str).lower().split()
+    camelcase_str = ""
+    for i, word in enumerate(word_list):
+        if i == 0:
+            camelcase_str += word
+        else:
+            camelcase_str += word.capitalize()
     return camelcase_str
