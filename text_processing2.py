@@ -43,8 +43,7 @@ def digits_to_words(input_string):
     }
     number_string:str = re.sub("[^0-9]", "", input_string)
     string_list:list[str] = []
-    for number in number_string:
-        string_list.append(db[number])
+    string_list:list[str] = [ db[number] for number in number_string ]
     digit_string = " ".join(string_list)
     return digit_string
 
