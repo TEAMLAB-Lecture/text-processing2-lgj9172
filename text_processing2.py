@@ -82,11 +82,13 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    word_list = re.sub("[_*]", " ", underscore_str).lower().strip().split()
+    word_list = re.sub("[_*]", " ", underscore_str).strip().split()
     camelcase_str = ""
     for i, word in enumerate(word_list):
-        if i == 0:
+        if i == 0 and len(word_list)==1:
             camelcase_str += word
+        elif i == 0 and len(word_list)>1:
+            camelcase_str += word.lower()
         else:
             camelcase_str += word.capitalize()
     return camelcase_str
